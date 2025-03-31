@@ -24,7 +24,7 @@ const HomePage = () => {
       <div className="hero-content">
         <h1><br /> <span>Cyber Solution</span> <br /> A Mint of Creativity</h1>
         <p>
-         Find All Kind of Solution.
+         Find All Kind of Solutions
         </p>
       </div>
     </section>
