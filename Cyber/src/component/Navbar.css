@@ -1,0 +1,153 @@
+/* Navbar Styles */
+.navbar {
+  background-color:#fefeff;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo {
+  font-size: 24px;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin-left: 150px;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 15px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.nav-link:hover {
+  color: black;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+}
+
+.navbar-links.active {
+  display: block;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar-links.active li {
+  margin: 10px 0;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+.nav-link {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  transition: 0.3s;
+  position: relative;
+  font-weight: normal; /* Default font weight */
+}
+
+.nav-link.active-link {
+  font-weight: bold; /* Make active link bold */
+}
+
+/* Navbar Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Sign In Button */
+.signin-btn {
+  background-color: #5b49ff; /* Vibrant blue */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px; /* Rounded shape */
+  font-weight: bold;
+  border: none;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  background-color: #4a38e0; /* Darker blue on hover */
+}
+
+/* Sign Up Button */
+.signup-btn {
+  background-color: #ede9fe; /* Light purple */
+  color: #5b49ff; /* Blue text */
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: bold;
+  border: none;
+  transition: 0.3s;
+}
+
+.signup-btn:hover {
+  background-color: #dcd4fc; /* Slightly darker on hover */
+}
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Push Sign In & Sign Up to the Right */
+.nav-buttons {
+  margin-left: auto; /* Pushes buttons to the right */
+  display: flex;
+  gap: 15px;
+}
+/* Remove underline from Sign In & Sign Up buttons */
+.signin-btn, .signup-btn {
+  text-decoration: none; /* Removes underline */
+  display: inline-block; /* Ensures proper spacing */
+}

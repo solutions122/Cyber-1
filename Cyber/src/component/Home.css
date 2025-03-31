@@ -1,0 +1,43 @@
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+  }
+  
+  .hero-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    height: 80vh;
+    background: #f8faff;
+    padding: 50px;
+  }
+  
+  .hero-content {
+    max-width: 1000px;
+  }
+  
+  .hero h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #1f1f1f;
+  }
+  
+  .hero h1 span {
+    color: #4c5fd5; /* Blue text effect */
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+    
