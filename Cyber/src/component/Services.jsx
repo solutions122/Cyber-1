@@ -1,105 +1,104 @@
-import React, { useState } from "react";
-import Resume  from './Service/Resume'
-import Pan  from './Service/Pan'
-import Police  from './Service/Police'
-import Adhar  from './Service/Adhar'
-
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Resume from "./Service/Resume";
+import Pan from "./Service/Pan";
+import Police from "./Service/Police";
+import Adhar from "./Service/Adhar";
+import Board from "./Service/Board";
+import PF from "./Service/PF";
 
 const services = {
+  Services: <Board />,
   "Resume Creation": <Resume />,
-  "Adhar": <Adhar />,
-  "Pan": <Pan />,
+  Adhar: <Adhar />,
+  Pan: <Pan />,
   "Police Verification": <Police />,
-  
+  PF: <PF />,
 };
 
-const CyberCafeServices = () => {
-  const [selectedService, setSelectedService] = useState(null);
+const Services = () => {
+  const { service } = useParams();
+  const navigate = useNavigate();
+  const [activeSection, setActiveSection] = useState(service || "Services");
+
+  useEffect(() => {
+    if (!service || !services[service]) {
+      navigate("/services/Services");
+    } else {
+      setActiveSection(service);
+    }
+  }, [service, navigate]);
 
   return (
-    <div className="container">
+    <div style={{ display: "flex", height: "100vh" }}>
       {/* Sidebar */}
-      <aside className="sidebar">
-        <h2>Cybercafe Services</h2>
-        <ul>
-          {Object.keys(services).map((service, index) => (
+      <div style={styles.sidebar}>
+        <h2 style={styles.logo}>Cybercafe</h2>
+        <ul style={styles.menu}>
+          {Object.keys(services).map((key) => (
             <li
-              key={index}
-              className={selectedService === service ? "active" : ""}
-              onClick={() => setSelectedService(service)}
+              key={key}
+              style={{
+                ...styles.menuItem,
+                background: activeSection === key ? "#3949ab" : "transparent",
+                color: activeSection === key ? "#fff" : "#ddd",
+              }}
+              onClick={() => navigate(`/services/${key}`)}
             >
-              {service}
+              {key}
             </li>
           ))}
         </ul>
-      </aside>
+      </div>
 
-      {/* Content Section (Displays Selected Service) */}
-      <main className="content">
-        {selectedService ? (
-          <div>
-            <h2>{selectedService}</h2>
-            {services[selectedService]}
-          </div>
-        ) : (
-          <h2>Select a Service</h2>
-        )}
-      </main>
+      {/* Content Section */}
+      <div style={styles.content}>{services[activeSection]}</div>
     </div>
   );
 };
 
-export default CyberCafeServices;
+// Styles
+const styles = {
+  sidebar: {
+    width: "250px",
+    background: "#4c5fd5",
+    color: "white",
+    padding: "20px",
+    position: "fixed",
+    left: 0,
+    top: 0,
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  },
 
-/* CSS (Styled inline for better readability) */
-const styles = `
-.container {
-  display: flex;
-  height: 100vh;
-  background: #f8faff;
-}
-.sidebar {
-  width: 250px;
-  background: #4c5fd5;
-  color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-.sidebar h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.sidebar li {
-  padding: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.sidebar li.active, .sidebar li:hover {
-  background: #3a4cb7;
-}
-.content {
-  flex: 1;
-  padding: 40px;
-}
-.upload-section {
-  margin-top: 20px;
-}
-button {
-  padding: 10px;
-  background: #4c5fd5;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-`;
+  logo: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 
-// Append styles to document
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
+  menu: {
+    listStyle: "none",
+    padding: 0,
+    marginTop: "20px",
+    width: "100%",
+  },
+
+  menuItem: {
+    padding: "10px",
+    textAlign: "center",
+    cursor: "pointer",
+    transition: "0.3s",
+    borderRadius: "5px",
+  },
+
+  content: {
+    flex: 1,
+    marginLeft: "250px",
+    padding: "40px",
+    background: "#f0f2f5", // Full page background color except sidebar
+  },
+};
+
+export default Services;
